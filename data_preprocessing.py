@@ -3,7 +3,7 @@ import cv2
 from tqdm import tqdm
 
 input_root = './Balanced'
-output_root = './resized/training'  # 저장 위치
+output_root = './resized/train'  # 저장 위치
 os.makedirs(output_root, exist_ok=True)
 
 target_size = (224, 224)

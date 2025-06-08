@@ -1,2 +1,6 @@
 /Large/
 /resized/
+/Augmented/
+/testset/
+/Balanced/
+*.csv

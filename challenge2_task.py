@@ -86,10 +86,19 @@ knn.fit(X_train_pca, y_train)
 _, indices = knn.kneighbors(X_test_pca)  # (num_test, 10)
 top10_labels = [[label_map[y_train[i]] for i in idx_row] for idx_row in indices]
 
-# === CSV 저장 ===
-with open('c2_t1_a1.csv', 'w', newline='') as f:
+# === c2_t2_a1.csv: Top-10 예측 저장 ===
+with open('c2_t2_a1.csv', 'w', newline='') as f:
     writer = csv.writer(f)
     for fname, labels in zip(test_fnames, top10_labels):
         writer.writerow([fname] + labels)
 
-print("✅ Task2 Top-10 Retrieval 예측 완료 → c2_t1_a1.csv 저장됨")
+# === c2_t1_a1.csv: Top-1(최상위) 클래스 분류 결과 저장 ===
+with open('c2_t1_a1.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerow(['filename', 'predicted_class'])  # 헤더
+    for fname, labels in zip(test_fnames, top10_labels):
+        top1_class = labels[0]  # 가장 가까운 이웃의 클래스
+        writer.writerow([fname, top1_class])
+
+print("✅ Top-10 예측 → c2_t2_a1.csv 저장됨")
+print("✅ Top-1 분류 결과 → c2_t1_a1.csv 저장됨")
